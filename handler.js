@@ -16,7 +16,7 @@ const getMarcio = async () => {
     const feed = await parser.parseURL(
       'http://www.blogdomarciorangel.com.br/feed'
     )
-    const news = feed.items.map(({ link, title, pubDate }, i) => ({
+    const news = feed.items.slice(0, 5).map(({ link, title, pubDate }, i) => ({
       uid: title,
       updateDate: getDate(pubDate),
       titleText: title,
