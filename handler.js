@@ -3,6 +3,11 @@
 const Parser = require('rss-parser')
 const parser = new Parser()
 
+const getDate = dateStr => {
+  const date = new Date(dateStr);
+  return date.toISOString()
+}
+
 let lastFetched = null
 let lastNews = []
 const getMarcio = async () => {
@@ -13,7 +18,7 @@ const getMarcio = async () => {
     )
     const news = feed.items.map(({ link, title, pubDate }, i) => ({
       uid: title,
-      updateDate: '2019-10-15T00:00:0' + i + '.0Z',
+      updateDate: getDate(pubDate),
       titleText: title,
       mainText: title,
       redirectionUrl: link,
